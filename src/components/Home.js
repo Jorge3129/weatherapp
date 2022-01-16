@@ -1,25 +1,35 @@
-import React from "react";
+import {useEffect, useState} from "react";
+import Panel from "./Panel";
 
-class Home extends React.Component {
+function Home() {
+    const [weather, setWeather] = useState([]);
 
-    state = {};
-
-    componentDidMount() {
+    useEffect(() => {
         fetch('https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/924938')
             .then(response => response.json())
             .then(data => {
-                console.log("DATA: " + data['consolidated_weather'][0]['weather_state_name']);
-                this.setState({text: `${JSON.stringify(data['consolidated_weather'][0]['weather_state_name'])}`});
+                console.log(data);
+                setWeather(data['consolidated_weather']);
             });
-    }
+    }, []);
 
-    render() {
-        return (
-            <div>
-                {this.state.text}
-            </div>
-        );
-    }
+    return (
+        <div className="App">
+            <header className={"header"}>
+                <h1 className={"header-title"}>Weather App</h1>
+            </header>
+            {weather.length === 0 ?
+                <div>Loading...</div> :
+                <ul className={"panel-container"}>{
+                    weather.map((el) =>
+                        <li className={"panel-wrap"} key={`${el}` + Math.random() + Math.random()}>
+                            <Panel obj={el}/>
+                        </li>)
+                }
+                </ul>
+            }
+        </div>
+    );
 }
 
 export default Home;
