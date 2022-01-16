@@ -1,0 +1,62 @@
+.App {
+    text-align: center;
+    font-family: Roboto, sans-serif;
+}
+
+:root {
+    --blue: #57a0ff;
+    --white: #fff;
+    --light-violet: #d2cae8;
+    --violet: #4800ff;
+}
+
+.header {
+    background-color: var(--blue);
+    margin: 0;
+    padding: 6px;
+    display: flex;
+}
+
+.header-title {
+    color: var(--white);
+    font-size: 40px;
+    font-weight: 500;
+    margin: 17px 30px;
+    text-shadow: var(--violet) -4px 4px 3px;
+}
+
+.header-title:hover {
+    cursor: pointer;
+    color: var(--light-violet);
+}
+
+.panel-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 40px;
+    padding: 10px;
+}
+
+.panel-wrap {
+    list-style-type: none;
+    padding: 20px;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 760px){
+    .panel-container {
+        margin: 10px 10px;
+    }
+}
+
+@media screen and (max-width: 560px){
+    .panel-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
